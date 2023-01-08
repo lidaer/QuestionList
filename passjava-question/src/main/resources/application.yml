@@ -1,6 +1,15 @@
 server:
   port: 11000
+
 spring:
+  application:
+    name: passjava-question
+
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://192.168.56.10:3306/passjava_qms?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
