@@ -1,4 +1,4 @@
-package com.jackson0714.passjava.channel.controller;
+package com.jackson0714.passjava.content.controller;
 
 import java.util.Arrays;
 import java.util.Map;
@@ -10,33 +10,33 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.jackson0714.passjava.channel.entity.ChannelEntity;
-import com.jackson0714.passjava.channel.service.ChannelService;
+import com.jackson0714.passjava.content.entity.BannerEntity;
+import com.jackson0714.passjava.content.service.BannerService;
 import com.jackson0714.common.utils.PageUtils;
 import com.jackson0714.common.utils.R;
 
 
 
 /**
- * 渠道-渠道表
+ * 内容-横幅广告表
  *
  * @author sz
  * @email 2795656376@gmail.com
- * @date 2023-01-08 12:05:25
+ * @date 2023-01-08 12:14:13
  */
 @RestController
-@RequestMapping("channel/channel")
-public class ChannelController {
+@RequestMapping("content/banner")
+public class BannerController {
     @Autowired
-    private ChannelService channelService;
+    private BannerService bannerService;
 
     /**
      * 列表
      */
     @RequestMapping("/list")
-    //@RequiresPermissions("channel:channel:list")
+    //@RequiresPermissions("content:banner:list")
     public R list(@RequestParam Map<String, Object> params){
-        PageUtils page = channelService.queryPage(params);
+        PageUtils page = bannerService.queryPage(params);
 
         return R.ok().put("page", page);
     }
@@ -46,20 +46,20 @@ public class ChannelController {
      * 信息
      */
     @RequestMapping("/info/{id}")
-    //@RequiresPermissions("channel:channel:info")
+    //@RequiresPermissions("content:banner:info")
     public R info(@PathVariable("id") Long id){
-		ChannelEntity channel = channelService.getById(id);
+		BannerEntity banner = bannerService.getById(id);
 
-        return R.ok().put("channel", channel);
+        return R.ok().put("banner", banner);
     }
 
     /**
      * 保存
      */
     @RequestMapping("/save")
-    //@RequiresPermissions("channel:channel:save")
-    public R save(@RequestBody ChannelEntity channel){
-		channelService.save(channel);
+    //@RequiresPermissions("content:banner:save")
+    public R save(@RequestBody BannerEntity banner){
+		bannerService.save(banner);
 
         return R.ok();
     }
@@ -68,9 +68,9 @@ public class ChannelController {
      * 修改
      */
     @RequestMapping("/update")
-    //@RequiresPermissions("channel:channel:update")
-    public R update(@RequestBody ChannelEntity channel){
-		channelService.updateById(channel);
+    //@RequiresPermissions("content:banner:update")
+    public R update(@RequestBody BannerEntity banner){
+		bannerService.updateById(banner);
 
         return R.ok();
     }
@@ -79,9 +79,9 @@ public class ChannelController {
      * 删除
      */
     @RequestMapping("/delete")
-    //@RequiresPermissions("channel:channel:delete")
+    //@RequiresPermissions("content:banner:delete")
     public R delete(@RequestBody Long[] ids){
-		channelService.removeByIds(Arrays.asList(ids));
+		bannerService.removeByIds(Arrays.asList(ids));
 
         return R.ok();
     }

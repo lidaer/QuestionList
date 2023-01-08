@@ -10,9 +10,9 @@ import lombok.Data;
 /**
  * 渠道-渠道表
  * 
- * @author chenshun
+ * @author sz
  * @email 2795656376@gmail.com
- * @date 2023-01-05 17:48:14
+ * @date 2023-01-08 12:05:25
  */
 @Data
 @TableName("chms_channel")

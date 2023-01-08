@@ -1,4 +1,4 @@
-package com.jackson0714.passjava.channel.entity;
+package com.jackson0714.passjava.study.entity;
 
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -8,15 +8,15 @@ import java.util.Date;
 import lombok.Data;
 
 /**
- * 渠道-认证表
+ * 学习-用户学习浏览记录表
  * 
  * @author sz
  * @email 2795656376@gmail.com
- * @date 2023-01-08 12:05:25
+ * @date 2023-01-08 12:21:33
  */
 @Data
-@TableName("chms_access_token")
-public class AccessTokenEntity implements Serializable {
+@TableName("sms_view_log")
+public class ViewLogEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -25,17 +25,17 @@ public class AccessTokenEntity implements Serializable {
 	@TableId
 	private Long id;
 	/**
-	 * access_token
+	 * 题目id
 	 */
-	private String accessToken;
+	private Long quesId;
 	/**
-	 * 到期时间
+	 * 题目类型id
 	 */
-	private Date expireTime;
+	private Long quesType;
 	/**
-	 * 渠道id
+	 * 用户id
 	 */
-	private Long channelId;
+	private Long memberId;
 	/**
 	 * 删除标记（0-正常，1-删除）
 	 */

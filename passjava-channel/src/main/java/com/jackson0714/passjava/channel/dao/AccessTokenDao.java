@@ -7,9 +7,9 @@ import org.apache.ibatis.annotations.Mapper;
 /**
  * 渠道-认证表
  * 
- * @author chenshun
+ * @author sz
  * @email 2795656376@gmail.com
- * @date 2023-01-05 17:48:14
+ * @date 2023-01-08 12:05:25
  */
 @Mapper
 public interface AccessTokenDao extends BaseMapper<AccessTokenEntity> {

@@ -1,4 +1,4 @@
-package com.jackson0714.passjava.channel.controller;
+package com.jackson0714.passjava.member.controller;
 
 import java.util.Arrays;
 import java.util.Map;
@@ -10,33 +10,33 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.jackson0714.passjava.channel.entity.ChannelEntity;
-import com.jackson0714.passjava.channel.service.ChannelService;
+import com.jackson0714.passjava.member.entity.MemberEntity;
+import com.jackson0714.passjava.member.service.MemberService;
 import com.jackson0714.common.utils.PageUtils;
 import com.jackson0714.common.utils.R;
 
 
 
 /**
- * 渠道-渠道表
+ * 会员-会员表
  *
  * @author sz
  * @email 2795656376@gmail.com
- * @date 2023-01-08 12:05:25
+ * @date 2023-01-08 13:22:11
  */
 @RestController
-@RequestMapping("channel/channel")
-public class ChannelController {
+@RequestMapping("member/member")
+public class MemberController {
     @Autowired
-    private ChannelService channelService;
+    private MemberService memberService;
 
     /**
      * 列表
      */
     @RequestMapping("/list")
-    //@RequiresPermissions("channel:channel:list")
+    //@RequiresPermissions("member:member:list")
     public R list(@RequestParam Map<String, Object> params){
-        PageUtils page = channelService.queryPage(params);
+        PageUtils page = memberService.queryPage(params);
 
         return R.ok().put("page", page);
     }
@@ -46,20 +46,20 @@ public class ChannelController {
      * 信息
      */
     @RequestMapping("/info/{id}")
-    //@RequiresPermissions("channel:channel:info")
+    //@RequiresPermissions("member:member:info")
     public R info(@PathVariable("id") Long id){
-		ChannelEntity channel = channelService.getById(id);
+		MemberEntity member = memberService.getById(id);
 
-        return R.ok().put("channel", channel);
+        return R.ok().put("member", member);
     }
 
     /**
      * 保存
      */
     @RequestMapping("/save")
-    //@RequiresPermissions("channel:channel:save")
-    public R save(@RequestBody ChannelEntity channel){
-		channelService.save(channel);
+    //@RequiresPermissions("member:member:save")
+    public R save(@RequestBody MemberEntity member){
+		memberService.save(member);
 
         return R.ok();
     }
@@ -68,9 +68,9 @@ public class ChannelController {
      * 修改
      */
     @RequestMapping("/update")
-    //@RequiresPermissions("channel:channel:update")
-    public R update(@RequestBody ChannelEntity channel){
-		channelService.updateById(channel);
+    //@RequiresPermissions("member:member:update")
+    public R update(@RequestBody MemberEntity member){
+		memberService.updateById(member);
 
         return R.ok();
     }
@@ -79,9 +79,9 @@ public class ChannelController {
      * 删除
      */
     @RequestMapping("/delete")
-    //@RequiresPermissions("channel:channel:delete")
+    //@RequiresPermissions("member:member:delete")
     public R delete(@RequestBody Long[] ids){
-		channelService.removeByIds(Arrays.asList(ids));
+		memberService.removeByIds(Arrays.asList(ids));
 
         return R.ok();
     }

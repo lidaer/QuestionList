@@ -1,4 +1,4 @@
-package com.jackson0714.passjava.channel.entity;
+package com.jackson0714.passjava.member.entity;
 
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -8,15 +8,15 @@ import java.util.Date;
 import lombok.Data;
 
 /**
- * 渠道-认证表
+ * 会员-积分值变化历史记录表
  * 
  * @author sz
  * @email 2795656376@gmail.com
- * @date 2023-01-08 12:05:25
+ * @date 2023-01-08 13:22:11
  */
 @Data
-@TableName("chms_access_token")
-public class AccessTokenEntity implements Serializable {
+@TableName("ums_growth_change_history")
+public class GrowthChangeHistoryEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -25,17 +25,21 @@ public class AccessTokenEntity implements Serializable {
 	@TableId
 	private Long id;
 	/**
-	 * access_token
+	 * 会员id
 	 */
-	private String accessToken;
+	private Long memberId;
 	/**
-	 * 到期时间
+	 * 改变的值（正负计数）
 	 */
-	private Date expireTime;
+	private Integer changeCount;
 	/**
-	 * 渠道id
+	 * 备注
 	 */
-	private Long channelId;
+	private String note;
+	/**
+	 * 0->扫码；1->搜索;2->分享
+	 */
+	private Integer sourceType;
 	/**
 	 * 删除标记（0-正常，1-删除）
 	 */

@@ -1,4 +1,4 @@
-package com.jackson0714.passjava.channel.controller;
+package com.jackson0714.passjava.content.controller;
 
 import java.util.Arrays;
 import java.util.Map;
@@ -10,33 +10,33 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.jackson0714.passjava.channel.entity.ChannelEntity;
-import com.jackson0714.passjava.channel.service.ChannelService;
+import com.jackson0714.passjava.content.entity.NewsEntity;
+import com.jackson0714.passjava.content.service.NewsService;
 import com.jackson0714.common.utils.PageUtils;
 import com.jackson0714.common.utils.R;
 
 
 
 /**
- * 渠道-渠道表
+ * 内容-资讯表
  *
  * @author sz
  * @email 2795656376@gmail.com
- * @date 2023-01-08 12:05:25
+ * @date 2023-01-08 12:14:13
  */
 @RestController
-@RequestMapping("channel/channel")
-public class ChannelController {
+@RequestMapping("content/news")
+public class NewsController {
     @Autowired
-    private ChannelService channelService;
+    private NewsService newsService;
 
     /**
      * 列表
      */
     @RequestMapping("/list")
-    //@RequiresPermissions("channel:channel:list")
+    //@RequiresPermissions("content:news:list")
     public R list(@RequestParam Map<String, Object> params){
-        PageUtils page = channelService.queryPage(params);
+        PageUtils page = newsService.queryPage(params);
 
         return R.ok().put("page", page);
     }
@@ -46,20 +46,20 @@ public class ChannelController {
      * 信息
      */
     @RequestMapping("/info/{id}")
-    //@RequiresPermissions("channel:channel:info")
+    //@RequiresPermissions("content:news:info")
     public R info(@PathVariable("id") Long id){
-		ChannelEntity channel = channelService.getById(id);
+		NewsEntity news = newsService.getById(id);
 
-        return R.ok().put("channel", channel);
+        return R.ok().put("news", news);
     }
 
     /**
      * 保存
      */
     @RequestMapping("/save")
-    //@RequiresPermissions("channel:channel:save")
-    public R save(@RequestBody ChannelEntity channel){
-		channelService.save(channel);
+    //@RequiresPermissions("content:news:save")
+    public R save(@RequestBody NewsEntity news){
+		newsService.save(news);
 
         return R.ok();
     }
@@ -68,9 +68,9 @@ public class ChannelController {
      * 修改
      */
     @RequestMapping("/update")
-    //@RequiresPermissions("channel:channel:update")
-    public R update(@RequestBody ChannelEntity channel){
-		channelService.updateById(channel);
+    //@RequiresPermissions("content:news:update")
+    public R update(@RequestBody NewsEntity news){
+		newsService.updateById(news);
 
         return R.ok();
     }
@@ -79,9 +79,9 @@ public class ChannelController {
      * 删除
      */
     @RequestMapping("/delete")
-    //@RequiresPermissions("channel:channel:delete")
+    //@RequiresPermissions("content:news:delete")
     public R delete(@RequestBody Long[] ids){
-		channelService.removeByIds(Arrays.asList(ids));
+		newsService.removeByIds(Arrays.asList(ids));
 
         return R.ok();
     }

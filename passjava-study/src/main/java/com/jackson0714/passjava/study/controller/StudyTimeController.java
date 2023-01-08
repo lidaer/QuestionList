@@ -1,4 +1,4 @@
-package com.jackson0714.passjava.channel.controller;
+package com.jackson0714.passjava.study.controller;
 
 import java.util.Arrays;
 import java.util.Map;
@@ -10,33 +10,33 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.jackson0714.passjava.channel.entity.ChannelEntity;
-import com.jackson0714.passjava.channel.service.ChannelService;
+import com.jackson0714.passjava.study.entity.StudyTimeEntity;
+import com.jackson0714.passjava.study.service.StudyTimeService;
 import com.jackson0714.common.utils.PageUtils;
 import com.jackson0714.common.utils.R;
 
 
 
 /**
- * 渠道-渠道表
+ * 学习-用户学习时常表
  *
  * @author sz
  * @email 2795656376@gmail.com
- * @date 2023-01-08 12:05:25
+ * @date 2023-01-08 12:21:33
  */
 @RestController
-@RequestMapping("channel/channel")
-public class ChannelController {
+@RequestMapping("study/studytime")
+public class StudyTimeController {
     @Autowired
-    private ChannelService channelService;
+    private StudyTimeService studyTimeService;
 
     /**
      * 列表
      */
     @RequestMapping("/list")
-    //@RequiresPermissions("channel:channel:list")
+    //@RequiresPermissions("study:studytime:list")
     public R list(@RequestParam Map<String, Object> params){
-        PageUtils page = channelService.queryPage(params);
+        PageUtils page = studyTimeService.queryPage(params);
 
         return R.ok().put("page", page);
     }
@@ -46,20 +46,20 @@ public class ChannelController {
      * 信息
      */
     @RequestMapping("/info/{id}")
-    //@RequiresPermissions("channel:channel:info")
+    //@RequiresPermissions("study:studytime:info")
     public R info(@PathVariable("id") Long id){
-		ChannelEntity channel = channelService.getById(id);
+		StudyTimeEntity studyTime = studyTimeService.getById(id);
 
-        return R.ok().put("channel", channel);
+        return R.ok().put("studyTime", studyTime);
     }
 
     /**
      * 保存
      */
     @RequestMapping("/save")
-    //@RequiresPermissions("channel:channel:save")
-    public R save(@RequestBody ChannelEntity channel){
-		channelService.save(channel);
+    //@RequiresPermissions("study:studytime:save")
+    public R save(@RequestBody StudyTimeEntity studyTime){
+		studyTimeService.save(studyTime);
 
         return R.ok();
     }
@@ -68,9 +68,9 @@ public class ChannelController {
      * 修改
      */
     @RequestMapping("/update")
-    //@RequiresPermissions("channel:channel:update")
-    public R update(@RequestBody ChannelEntity channel){
-		channelService.updateById(channel);
+    //@RequiresPermissions("study:studytime:update")
+    public R update(@RequestBody StudyTimeEntity studyTime){
+		studyTimeService.updateById(studyTime);
 
         return R.ok();
     }
@@ -79,9 +79,9 @@ public class ChannelController {
      * 删除
      */
     @RequestMapping("/delete")
-    //@RequiresPermissions("channel:channel:delete")
+    //@RequiresPermissions("study:studytime:delete")
     public R delete(@RequestBody Long[] ids){
-		channelService.removeByIds(Arrays.asList(ids));
+		studyTimeService.removeByIds(Arrays.asList(ids));
 
         return R.ok();
     }
