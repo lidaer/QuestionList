@@ -3,6 +3,7 @@ package com.jackson0714.passjava.member.controller;
 import java.util.Arrays;
 import java.util.Map;
 
+import com.jackson0714.passjava.member.feign.StudyTimeFeignService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -29,6 +30,9 @@ import com.jackson0714.common.utils.R;
 public class MemberController {
     @Autowired
     private MemberService memberService;
+
+    @Autowired
+    private StudyTimeFeignService studyTimeFeignService;
 
     /**
      * 列表
@@ -86,4 +90,16 @@ public class MemberController {
         return R.ok();
     }
 
+    @RequestMapping("/studytime/list/test/{id}")
+    public R getMemberStudyTimeListTest(@PathVariable("id") Long id) {
+        // mock数据库查到的会员信息
+        MemberEntity memberEntity = new MemberEntity();
+        // 学习时长：100分钟
+        memberEntity.setId(id);
+        memberEntity.setNickname("sz");
+
+        //远程调用拿到该用户的学习时长（学习时长是mock数据）
+        R memberStudyTimeList = studyTimeFeignService.getMemberStudyTimeListTest(id);
+        return R.ok().put("member", memberEntity).put("studytime", memberStudyTimeList.get("studytime"));
+    }
 }

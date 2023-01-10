@@ -86,4 +86,13 @@ public class StudyTimeController {
         return R.ok();
     }
 
+    //远程调用测试
+    @RequestMapping("/member/list/test/{id}")
+    public R memberStudyTimeTest(@PathVariable("id") Long id) {
+        StudyTimeEntity studyTimeEntity = new StudyTimeEntity();
+        studyTimeEntity.setTotalTime(100); // 学习时长：100分钟
+        studyTimeEntity.setQuesType(1L); // 题目类型：1 （javaBasic）
+
+        return R.ok().put("studytime", Arrays.asList(studyTimeEntity));
+    }
 }
